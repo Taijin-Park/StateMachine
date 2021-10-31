@@ -13,10 +13,10 @@ int main(void)
 	T_COLOR * pt_color = InitColor();
 
 	pt_color->Update(30);
-	pt_color->Update(60);
-	pt_color->Update(95);
+	pt_color->Update(50);
+	pt_color->Update(90);
 
-	switch (pt_color->GetCurrentColor())		// GetCurrentColor 함수 테스트용
+	switch (pt_color->GetCurrentColor())		// GetCurrentColor 테스트를 위함
 	{
 		case GREEN:
 			printf("Current Color : GREEN");
