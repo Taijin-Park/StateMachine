@@ -23,4 +23,13 @@ typedef unsigned long long  UINT64;
 typedef float  	  	   		FLOAT32;
 typedef double  	   		FLOAT64;
 
+
+typedef enum e_state_change
+{
+	STATE_START		= 0,
+	STATE_EXECUTE,
+	STATE_FINISH,
+	STATE_CHANGE_MAX
+} E_STATE_CHANGE;
+
 #endif /* COMMON_H_ */

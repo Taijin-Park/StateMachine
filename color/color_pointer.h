@@ -1,6 +1,7 @@
 /***********************************************
- * File Name : color.h
+ * File Name : color_pointer.h
  * Created   : 2021. 10. 31.
+ * Comment   : Color 상태 모듈을 클래스와 유사하게 구현 (포인터 사용)
  * Author	 : Taejin Park
  ***********************************************/
 

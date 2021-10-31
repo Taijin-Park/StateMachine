@@ -1,17 +1,19 @@
 /***********************************************
- * File Name : color.c
+ * File Name : color_pointer.c
  * Created   : 2021. 10. 31.
+ * Comment	 : Color ìƒíƒœ ëª¨ë“ˆì„ í´ë˜ìŠ¤ì™€ ìœ ì‚¬í•˜ê²Œ êµ¬í˜„ (í¬ì¸í„° ì‚¬ìš©)
  * Author	 : Taejin Park
  ***********************************************/
 
+#include "color_pointer.h"
+
 #include <stdio.h>
-#include "color.h"
 
 /*****************************************************
  * private types
  *****************************************************/
 
-// »óÅÂ º¯È­¿¡ ´ëÇÑ ±â´ÉÀ» ´ã´çÇÏ´Â ÇÔ¼öµéÀÇ ÁıÇÕ ±¸Á¶Ã¼
+// ìƒíƒœ ë³€í™”ì— ëŒ€í•œ ê¸°ëŠ¥ì„ ë‹´ë‹¹í•˜ëŠ” í•¨ìˆ˜ë“¤ì˜ ì§‘í•© êµ¬ì¡°ì²´
 typedef struct color_state
 {
 	E_COLOR e_color;
@@ -28,7 +30,7 @@ typedef struct color_state
 #define YELLOW_LIMIT	80
 
 /*****************************************************
- * private function prototypes - ±¸Á¶Ã¼ ¸â¹ö ÇÔ¼ö
+ * private function prototypes - êµ¬ì¡°ì²´ ë©¤ë²„ í•¨ìˆ˜
  *****************************************************/
 void 	update(UINT8 u8_number);
 E_COLOR get_current_color(void);
@@ -57,20 +59,20 @@ static void finish_yellow_state(void);
 /*****************************************************
  * private variables
  *****************************************************/
-T_COLOR t_color =											// Color ±¸Á¶Ã¼ º¯¼ö ¼±¾ğ ¹× ÃÊ±âÈ­
+T_COLOR t_color =											// Color êµ¬ì¡°ì²´ ë³€ìˆ˜ ì„ ì–¸ ë° ì´ˆê¸°í™” (ì™¸ë¶€ì—ì„œ í´ë˜ìŠ¤ì²˜ëŸ¼ ì‚¬ìš©)
 {
 	update,
 	get_current_color
 };
 
-T_COLOR_STATE t_color_state[COLOR_MAX] =					// Color »óÅÂ ±¸Á¶Ã¼ º¯¼ö ¼±¾ğ ¹× ÃÊ±âÈ­
+T_COLOR_STATE t_color_state[COLOR_MAX] =					// Color ìƒíƒœ êµ¬ì¡°ì²´ ë³€ìˆ˜ ì„ ì–¸ ë° ì´ˆê¸°í™”
 {
 	{ GREEN,  start_green_state,  execute_green_state,  finish_green_state  },
 	{ YELLOW, start_yellow_state, execute_yellow_state, finish_yellow_state },
 	{ RED,	  start_red_state,    execute_red_state,    finish_red_state    }
 };
 
-T_COLOR_STATE *pt_current_color = &t_color_state[GREEN];		// ÇöÀç Color º¯¼ö ¼±¾ğ ¹× ÃÊ±âÈ­
+T_COLOR_STATE *pt_current_color = &t_color_state[GREEN];	// í˜„ì¬ Color ë³€ìˆ˜ ì„ ì–¸ ë° ì´ˆê¸°í™”
 
 
 /*****************************************************
@@ -78,8 +80,8 @@ T_COLOR_STATE *pt_current_color = &t_color_state[GREEN];		// ÇöÀç Color º¯¼ö ¼±¾
  *****************************************************/
 
 /*****************************************************
- * @breif  : ¿ÜºÎ¿¡¼­ Color ±¸Á¶Ã¼¸¦ »ç¿ëÇÏ±â À§ÇØ ±¸Á¶Ã¼ ÁÖ¼Ò¸¦ ¾ò±â À§ÇÑ ÇÔ¼ö
- * @return : Color ±¸Á¶Ã¼ Æ÷ÀÎÅÍ
+ * @breif  : ì™¸ë¶€ì—ì„œ Color êµ¬ì¡°ì²´ë¥¼ ì‚¬ìš©í•˜ê¸° ìœ„í•´ êµ¬ì¡°ì²´ ì£¼ì†Œë¥¼ ì–»ê¸° ìœ„í•œ í•¨ìˆ˜
+ * @return : Color êµ¬ì¡°ì²´ í¬ì¸í„°
  *****************************************************/
 T_COLOR* InitColor(void)
 {
@@ -89,12 +91,12 @@ T_COLOR* InitColor(void)
 }
 
 /*****************************************************
- * private functions - ±¸Á¶Ã¼ ¸â¹ö ÇÔ¼ö
+ * private functions - êµ¬ì¡°ì²´ ë©¤ë²„ í•¨ìˆ˜
  *****************************************************/
 
 /*****************************************************
- * @breif  	  : ¿Âµµ¿¡ µû¶ó Color ¸¦ º¯°æÇÏ´Â ÇÔ¼ö
- * @parameter : u8_temperature : ¿Âµµ
+ * @breif  	  : ì˜¨ë„ì— ë”°ë¼ Color ë¥¼ ë³€ê²½í•˜ëŠ” í•¨ìˆ˜
+ * @parameter : u8_temperature : ì˜¨ë„
  *****************************************************/
 void update(UINT8 u8_temperature)
 {
@@ -113,8 +115,8 @@ void update(UINT8 u8_temperature)
 }
 
 /*****************************************************
- * @breif  : ÇöÀç Color »óÅÂ¸¦ ¹İÈ¯ÇÏ´Â ÇÔ¼ö
- * @return : ÇöÀç Color »óÅÂ
+ * @breif  : í˜„ì¬ Color ìƒíƒœë¥¼ ë°˜í™˜í•˜ëŠ” í•¨ìˆ˜
+ * @return : í˜„ì¬ Color ìƒíƒœ
  *****************************************************/
 E_COLOR get_current_color(void)
 {
@@ -127,8 +129,8 @@ E_COLOR get_current_color(void)
  *****************************************************/
 
 /*****************************************************
- * @breif  	  : »óÅÂÀÇ º¯È­¿¡ µû¶ó µ¿ÀÛÀ» ½ÇÇà½ÃÅ°´Â ÇÔ¼ö
- * @parameter : pt_new_color : Color ±¸Á¶Ã¼ Æ÷ÀÎÅÍ
+ * @breif  	  : ìƒíƒœì˜ ë³€í™”ì— ë”°ë¼ ë™ì‘ì„ ì‹¤í–‰ì‹œí‚¤ëŠ” í•¨ìˆ˜
+ * @parameter : pt_new_color : Color êµ¬ì¡°ì²´ í¬ì¸í„°
  *****************************************************/
 static void update_state(T_COLOR_STATE *pt_new_color)
 {
@@ -146,7 +148,7 @@ static void update_state(T_COLOR_STATE *pt_new_color)
 }
 
 /*****************************************************
- * @breif : »óÅÂÀÇ ÁøÀÔ µ¿ÀÛÀ» ½ÇÇà½ÃÅ°´Â ÇÔ¼ö
+ * @breif : ìƒíƒœì˜ ì§„ì… ë™ì‘ì„ ì‹¤í–‰ì‹œí‚¤ëŠ” í•¨ìˆ˜
  *****************************************************/
 static void start_state(void)
 {
@@ -154,7 +156,7 @@ static void start_state(void)
 }
 
 /*****************************************************
- * @breif : »óÅÂ µ¿ÀÛÀ» ½ÇÇà½ÃÅ°´Â ÇÔ¼ö
+ * @breif : ìƒíƒœ ë™ì‘ì„ ì‹¤í–‰ì‹œí‚¤ëŠ” í•¨ìˆ˜
  *****************************************************/
 static void execute_state(void)
 {
@@ -162,7 +164,7 @@ static void execute_state(void)
 }
 
 /*****************************************************
- * @breif : »óÅÂÀÇ ÁøÃâ µ¿ÀÛÀ» ½ÇÇà½ÃÅ°´Â ÇÔ¼ö
+ * @breif : ìƒíƒœì˜ ì§„ì¶œ ë™ì‘ì„ ì‹¤í–‰ì‹œí‚¤ëŠ” í•¨ìˆ˜
  *****************************************************/
 static void finish_state(void)
 {
