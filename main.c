@@ -16,7 +16,7 @@ int main(void)
 	pt_color->Update(60);
 	pt_color->Update(95);
 
-	switch (pt_color->GetCurrentColor())		// GetCurrentColor ÇÔ¼ö Å×½ºÆ®ÇÏ±â À§ÇÔ
+	switch (pt_color->GetCurrentColor())		// GetCurrentColor í•¨ìˆ˜ í…ŒìŠ¤íŠ¸ìš©
 	{
 		case GREEN:
 			printf("Current Color : GREEN");
