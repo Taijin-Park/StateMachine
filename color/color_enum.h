@@ -1,5 +1,5 @@
 /***********************************************
- * File Name : color_pointer.h
+ * File Name : color_enum.h
  * Created   : 2021. 10. 31.
  * Comment   : Color 상태 모듈을 직관적으로 구현
  * Author	 : Taejin Park

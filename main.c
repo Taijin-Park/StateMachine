@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 
-#include "color/color_pointer.h"
+#include "color/color_class.h"
 #include "color/color_enum.h"
 #include "common/common.h"
 

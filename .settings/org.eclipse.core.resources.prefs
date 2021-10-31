@@ -1,7 +1,7 @@
 eclipse.preferences.version=1
+encoding//color/color_class.c=UTF-8
+encoding//color/color_class.h=UTF-8
 encoding//color/color_enum.c=UTF-8
 encoding//color/color_enum.h=UTF-8
-encoding//color/color_pointer.c=UTF-8
-encoding//color/color_pointer.h=UTF-8
 encoding//common/common.h=UTF-8
 encoding/main.c=UTF-8
